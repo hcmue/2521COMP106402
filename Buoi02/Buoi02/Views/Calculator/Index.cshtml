@@ -1,0 +1,28 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>MÁY TÍNH CÁ NHÂN</h2>
+<form asp-action="Calculate">
+    <input name="SoHang01" type="number" placeholder="Nhập số 1" 
+        value="@ViewBag.So01" />
+    <select name="ToanTu">
+        <option value="+">+</option>
+        <option value="-">-</option>
+        <option value="*">x</option>
+        <option value="/">/</option>
+        <option value="^">^</option>
+        <option value="%">%</option>
+    </select>
+    <input name="SoHang02" type="number" placeholder="Nhập số 2"
+           value="@ViewBag.So02" />
+    <button>=</button>
+    <span>@ViewBag.KetQua</span>
+</form>
+
+@section Scripts{
+    <script>
+        $('select[name="ToanTu"]').val('@ViewBag.ToanTu');
+    </script>
+}
