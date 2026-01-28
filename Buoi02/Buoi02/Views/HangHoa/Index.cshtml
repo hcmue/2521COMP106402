@@ -1,0 +1,24 @@
+﻿@model List<Buoi02.Models.HangHoa>
+
+<h2>DANH SÁCH</h2>
+<table class="table table-hover">
+    <tr>
+        <td>Hàng hóa</td>
+        <td>Giá</td>
+        <td>Tồn</td>
+        <td></td>
+    </tr>
+    @foreach(var hh in Model)
+    {
+        <tr>
+            <td>@hh.TenHh</td>
+            <td>@hh.DonGia.ToString("#,##0") đ</td>
+            <td>@hh.SoLuongTon</td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@hh.MaHh" class="text-primary">Sửa</a>
+                <a asp-action="Delete" asp-route-id="@hh.MaHh" class="text-danger">Xóa</a>
+            </td>
+        </tr>
+    }
+</table>
+<a asp-action="Create" asp-controller="HangHoa">Tạo mới</a>
