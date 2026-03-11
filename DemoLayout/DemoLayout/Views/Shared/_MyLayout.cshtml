@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/css/MyStyle.css" rel="stylesheet" />
+    @await RenderSectionAsync("MyStyles", required: false)
+</head>
+<body>
+    <div class="container">
+        <header id="myheader"></header>
+        <div class="row">
+            <aside class="col-3 mycontent">#Menu</aside>
+            <div class="col-9 mycontent">
+                @RenderBody()
+            </div>
+        </div>
+        <footer id="myfooter">Bản quyền....</footer>        
+    </div>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+    @await RenderSectionAsync("MyScripts", required: false)
+</body>
+</html>
