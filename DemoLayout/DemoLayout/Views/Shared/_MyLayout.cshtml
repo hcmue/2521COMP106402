@@ -16,7 +16,7 @@
                 #Menu
                 @await Html.PartialAsync("_DanhMuc")
                 @await Html.PartialAsync("_DanhMuc")
-                
+                @await Component.InvokeAsync("CategoryMenu")
             </aside>
             <div class="col-9 mycontent">
                 @RenderBody()
