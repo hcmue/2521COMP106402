@@ -12,12 +12,31 @@
     <div class="container">
         <header id="myheader"></header>
         <div class="row">
-            <aside class="col-3 mycontent">#Menu</aside>
+            <aside class="col-3 mycontent">
+                #Menu
+                <div class="card">
+                    <div class="card-header">Danh mục</div>
+                    <div class="card-body">
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <a href="#1">Điện thoại</a>
+                            </li>
+                            <li class="list-group-item">
+                                <a href="#2">Máy tính bảng</a>
+                            </li>
+                            <li class="list-group-item">
+                                <a href="#3">Laptop</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+            </aside>
             <div class="col-9 mycontent">
                 @RenderBody()
             </div>
         </div>
-        <footer id="myfooter">Bản quyền....</footer>        
+        <footer id="myfooter">Bản quyền....</footer>
     </div>
     <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
     @await RenderSectionAsync("MyScripts", required: false)
