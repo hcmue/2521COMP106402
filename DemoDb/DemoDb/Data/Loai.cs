@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DemoDb.Data
 {
-    [Table("Category")]
+    //[Table("Category")]
     public class Loai
     {
         [Key]
