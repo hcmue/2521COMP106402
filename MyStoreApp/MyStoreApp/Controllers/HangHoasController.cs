@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MyStoreApp.Entities;
+using MyStoreApp.Models;
 
 namespace MyStoreApp.Controllers
 {
@@ -17,6 +18,43 @@ namespace MyStoreApp.Controllers
         {
             _context = context;
         }
+
+        #region Search HangHoa
+        [HttpGet]
+        public IActionResult Search()
+        {
+            return View();
+        }
+        const int SO_SP_MOT_TRANG = 15;
+        [HttpPost]
+        public IActionResult Search(string? Keyword, double? FromPrice, double? ToPrice, int page = 1)
+        {
+            var data = _context.HangHoas.AsQueryable();
+            if (!string.IsNullOrEmpty(Keyword))
+            {
+                data = data.Where(p => p.TenHh.Contains(Keyword, StringComparison.OrdinalIgnoreCase));
+            }
+            if (FromPrice.HasValue)
+            {
+                data = data.Where(p => p.DonGia >= FromPrice.Value);
+            }
+            if (ToPrice.HasValue)
+            {
+                data = data.Where(p => p.DonGia <= ToPrice.Value);
+            }
+            var result = data.Select(p=> new HangHoaVM
+            {
+                MaHh = p.MaHh, TenHh = p.TenHh, Hinh = p.Hinh,
+                DonGia = p.DonGia ?? 0,
+                TenLoai = p.MaLoaiNavigation.TenLoai,
+                NhaCungCap = p.MaNccNavigation.TenCongTy
+            })
+            .Skip((page -1)* SO_SP_MOT_TRANG)
+            .Take(SO_SP_MOT_TRANG)
+            .ToList();
+            return View(result);
+        }
+        #endregion
 
         // GET: HangHoas
         public async Task<IActionResult> Index()
